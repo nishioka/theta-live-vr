@@ -1,0 +1,235 @@
+// bower:scss
+// endbower
+
+html,
+body {
+    height: 100%
+}
+body {
+    background-color: #000;
+    color: #fff;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+}
+a {
+    color: #ffffff
+}
+#info {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    padding: 5px;
+    font-family: Monospace;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1
+}
+#menu {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center
+}
+#enterVR {
+    color: #FFF
+}
+#enterVR::after {
+    content: "Enter VR";
+    font-size: .8rem;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    display: none;
+    width: 100%
+}
+#enterVR:hover::after {
+    display: block
+}
+.white {
+    color: #FFF
+}
+.bg-pink {
+    background-color: #e14164
+}
+.absolute {
+    position: absolute
+}
+.top-0 {
+    top: 0
+}
+.right-0 {
+    right: 0
+}
+.bottom-0 {
+    bottom: 0
+}
+.left-0 {
+    left: 0
+}
+.right-2 {
+    right: 2rem
+}
+.bottom-2 {
+    bottom: 2rem
+}
+.relative {
+    position: relative
+}
+.left-align {
+    text-align: left
+}
+.center-align {
+    text-align: center
+}
+.right-align {
+    text-align: right
+}
+.p2 {
+    padding: 1rem
+}
+.full-width {
+    width: 100%
+}
+.full-height {
+    height: 100%
+}
+.w6 {
+    width: 6rem
+}
+.pr2 {
+    padding-right: 1rem
+}
+.cursor-pointer {
+    cursor: pointer
+}
+.table {
+    display: table;
+    width: 100%
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle
+}
+.container {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 2rem
+}
+.inline-block {
+    display: inline-block
+}
+.b-solid {
+    border-style: solid
+}
+.b-white {
+    border-color: #FFF
+}
+.hover-blue1:hover {
+    background: #0c99d5;
+    border-color: #0c99d5
+}
+.hover-blue3:hover {
+    background: #1f366c;
+    border-color: #1f366c
+}
+.rounded2 {
+    border-radius: .5rem
+}
+.display-none {
+    display: none!important
+}
+.nowrap {
+    white-space: nowrap
+}
+.medium {
+    font-weight: 500
+}
+.basiclink,
+.basiclink-black,
+.basiclink-blue,
+.basiclink-green,
+.basiclink-white {
+    border-width: 0 0 1px;
+    border-style: dotted
+}
+.basiclink-white {
+    color: #FFF;
+    border-color: #FFF
+}
+.basiclink-white:hover {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, .25);
+    text-decoration: none
+}
+.basiclink-blue {
+    color: #0c99d5;
+    border-color: #0c99d5
+}
+.basiclink-blue:hover {
+    color: #FFF;
+    background-color: #0c99d5;
+    text-decoration: none
+}
+.basiclink-green {
+    color: #00af84;
+    border-color: #00af84
+}
+.basiclink-green:hover {
+    color: #FFF;
+    background-color: #00af84;
+    text-decoration: none
+}
+.basiclink-black {
+    color: #111;
+    border-color: #111
+}
+.basiclink-black:hover {
+    color: #FFF;
+    background-color: #111;
+    text-decoration: none
+}
+button {
+    color: rgba(127, 255, 255, 0.75);
+    background: transparent;
+    outline: 1px solid rgba(127, 255, 255, 0.75);
+    border: 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgba(0, 255, 255, 0.5);
+}
+button:active {
+    color: #000000;
+    background-color: rgba(0, 255, 255, 0.75);
+}
+
+.hero-unit {
+  margin: 50px auto 0 auto;
+  width: 300px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 60px;
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+}
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}

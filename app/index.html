@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RICHO Theta S live viewer for Firefox VR</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script type="x-shader/x-vertex" id="sem-vs">
+        varying vec2 texCoord;
+
+        void main() {
+            // 処理する頂点ごとのuv(テクスチャ)座標をそのままfragmentShaderに横流しする
+            texCoord = uv;
+            // 変換：ローカル座標 → 配置 → カメラ座標
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            // 変換：カメラ座標 → 画面座標
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+
+    <script type="x-shader/x-vertex" id="sem-fs">
+        // based on ThetaShaderPack_20150926 (http://stereoarts.jp/) written by Nora.
+        // and https://github.com/yasuhirohoshino/thetaRealtimeEquirectangular written by Yasuhiro Hoshino
+
+        #define PI 3.14159265358979
+        #define _THETA_S_Y_SCALE	(640.0 / 720.0)
+        
+        uniform sampler2D tMatCap;
+        uniform float radius;
+        uniform vec4 uvOffset;
+
+        // vertexShaderで処理されて渡されるテクスチャ座標
+        varying vec2 texCoord;
+
+        void main() {
+            vec2 revUV = texCoord.st;
+            if (texCoord.x <= 0.5) {
+                revUV.x = revUV.x * 2.0;
+            } else {
+                revUV.x = (revUV.x - 0.5) * 2.0;
+            }
+
+            revUV *= PI;
+
+            vec3 p = vec3(cos(revUV.x), cos(revUV.y), sin(revUV.x));
+            p.xz *= sqrt(1.0 - p.y * p.y);
+
+            float r = 1.0 - asin(p.z) / (PI / 2.0);
+            vec2 st = vec2(p.y, p.x);
+
+            st *= r / sqrt(1.0 - p.z * p.z);
+            st *= radius;
+            st += 0.5;
+
+            if (texCoord.x <= 0.5) {
+                st.x *= 0.5;
+                st.x += 0.5;
+                st.y = 1.0 - st.y;
+                st.xy += uvOffset.wz;
+            } else {
+                st.x = 1.0 - st.x;
+                st.x *= 0.5;
+                st.xy += uvOffset.yx;
+            }
+
+            st.y = st.y * _THETA_S_Y_SCALE;
+
+            gl_FragColor = texture2D(tMatCap, st);
+        }
+    </script>
+
+    <div id="vrContainer" class="absolute top-0 left-0 full-width full-height"></div>
+
+    <div id="info">
+        <br />
+        <b>H</b> grid on/off
+        <br/>
+        <br/>
+    </div>
+    <div style="bottom: undefined" class="absolute right-2 bottom-2">
+        <div class="relative right-align">
+            <!-- ------------ VR detected, enter VR -------------->
+            <div id="enterVR" class="p2 cursor-pointer">
+                <div class="table">
+                    <div class="inline-block b-solid b-white hover-blue3 rounded2">
+                        <img src="images/icon-goggles-2-white.svg" alt="Enter VR" class="w6">
+                    </div>
+                </div>
+            </div>
+            <!-- ------------ No VR detected -------------->
+            <div id="getVR" class="white p2 bg-pink rounded2 display-none">
+                <div class="table">
+                    <div class="table-cell left-align pr2 f-small"><span class="light nowrap">Your browser does not support virtual reality.<br>Use <a href="http://mozvr.com/downloads" class="medium nowrap basiclink-white">Firefox with VR</a> and an Oculus Rift<br>to enter the full VR web experience.</span>
+                    </div>
+                    <div class="table-cell">
+                        <a href="http://mozvr.com/downloads" class="inline-block bg-lighten2 b2 b-solid b-white hover-blue1 rounded2">
+                            <img src="images/icon-goggles-1-outlinewhite.svg" alt="Enter VR" class="w5 p2">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l;
+            b[l] || (b[l] =
+                function () {
+                    (b[l].q = b[l].q || []).push(arguments)
+                });
+            b[l].l = +new Date;
+            e = o.createElement(i);
+            r = o.getElementsByTagName(i)[0];
+            e.src = 'https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-71806857-1');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/three.js/three.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!--
+    <script src="scripts/OrbitControls.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/TrackballControls.js" charset="utf-8" type="text/javascript"></script>
+    -->
+    <script src="scripts/FirstPersonControls.js" charset="utf-8" type="text/javascript"></script>
+    <!-- ステレオカメラのセットアップとレンダリング -->
+    <script src="scripts/VRControls.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/VREffect.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/VRClient.js" charset="utf-8" type="text/javascript"></script>
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
