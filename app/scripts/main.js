@@ -26,6 +26,8 @@ var tilt = d2r(0);
 var zoom = 70;
 var	cameraDir = new THREE.Vector3(Math.sin(pan), Math.sin(tilt), Math.cos(pan));
 
+var shaders = new ShaderLoader('shaders');
+
 function addAxisGrid() {
     // X軸:赤, Y軸:緑, Z軸:青
     axis = new THREE.AxisHelper(2000);
@@ -53,14 +55,6 @@ function onWindowResize() {
     } else {
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
-}
-
-function show(element) {
-    element.classList.remove('display-none');
-}
-
-function hide(element) {
-    element.classList.add('display-none');
 }
 
 function onkey(event) {
@@ -216,8 +210,8 @@ function init() {
             uvOffset: {type: 'v4', value: new THREE.Vector4(0, 0, 0, 0)},
             radius: { type: 'f', value: 0.445 }
 		},
-		vertexShader: document.getElementById( 'sem-vs' ).textContent,
-		fragmentShader: document.getElementById( 'sem-fs' ).textContent,
+        vertexShader: shaders.vs.theta,
+        fragmentShader: shaders.fs.theta,
 		shading: THREE.SmoothShading,
         side: THREE.DoubleSide
 	});
@@ -263,5 +257,10 @@ function rotest() {
     console.log(camera.rotation.x, camera.rotation.y, camera.rotation.z);
 }
 
-init();
-animate();
+shaders.shaderSetLoaded = function () {
+    init();
+    animate();
+};
+
+shaders.load('vs-theta', 'theta', 'vertex');
+shaders.load('fs-theta', 'theta', 'fragment');

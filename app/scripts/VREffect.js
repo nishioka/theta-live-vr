@@ -17,7 +17,7 @@ THREE.VREffect = function ( renderer, onError ) {
 
 	function gotVRDevices( devices ) {
 
-		for ( var i = 0; i < devices.length; i ++ ) {
+		for ( var i = 0; i < devices.length; i++ ) {
 
 			if ( devices[ i ] instanceof HMDVRDevice ) {
 
