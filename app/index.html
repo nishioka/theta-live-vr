@@ -33,7 +33,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a class="pull-right">Your PeerJS ID is <span id="pid"></span></a>
+                <div class="pull-right">
+                    <a>Your PeerJS ID is <span id="pid"></span></a>
+                </div>
             </div>
         </div>
         <div id="vrContainer">
@@ -49,7 +51,12 @@
                 <!-- ------------ No VR detected -------------->
                 <div id="getVR" class="white p2 bg-pink rounded2 display-none">
                     <div class="table">
-                        <div class="table-cell left-align pr2 f-small"><span class="light nowrap">Your browser does not support virtual reality.<br>Use <a href="http://mozvr.com/downloads" class="medium nowrap basiclink-white">Firefox with VR</a> and an Oculus Rift<br>to enter the full VR web experience.</span>
+                        <div class="table-cell left-align pr2 f-small">
+                            <span class="light nowrap">
+                                Your browser does not support virtual reality.<br>
+                                Use <a href="http://mozvr.com/downloads" class="medium nowrap basiclink-white">Firefox with VR</a> and an Oculus Rift<br>
+                                to enter the full VR web experience.
+                            </span>
                         </div>
                         <div class="table-cell">
                             <a href="http://mozvr.com/downloads" class="inline-block bg-lighten2 b2 b-solid b-white hover-blue1 rounded2">
@@ -92,6 +99,18 @@
     </div>
 
     <script>
+        ! function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, "script", "twitter-wjs");
+    </script>
+
+    <script>
         (function (b, o, i, l, e, r) {
             b.GoogleAnalyticsObject = l;
             b[l] || (b[l] =
@@ -111,9 +130,10 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/bower_components/three.js/three.min.js"></script>
     <script src="/bower_components/peerjs/peer.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/purl/purl.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

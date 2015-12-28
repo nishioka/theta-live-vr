@@ -20,7 +20,19 @@ var peer = new Peer({
 
 // Show my peer's ID.
 peer.on('open', function (id) {
-    $('#pid').text(id);
+    var peerID = $('#pid');
+    peerID.text(id);
+    var tweetButton = $('<a>Tweet</a>');
+    tweetButton.attr({
+        'href': 'https://twitter.com/share',
+        'class': 'twitter-share-button',
+        'data-lang': 'ja',
+        'data-count': 'none',
+        'data-url': location.href + '?id=' + id,
+        'data-text': 'THETA S Live Streaming'
+    });
+    peerID.after(tweetButton);
+    twttr.widgets.load();
 });
 
 peer.on('error', function (err) {
@@ -106,6 +118,12 @@ $('#close').click(function () {
     });
 });
 
+$(window).on('load', function() {
+    var url = $.url();
+    var id = url.param('id');
+    $('#rid').val(id);
+});
+
 // Goes through each active peer and calls FN on its connections.
 function eachActiveConnection(fn) {
     var actives = $('.active');
@@ -125,9 +143,10 @@ function eachActiveConnection(fn) {
     });
 }
 
+
 // Make sure things clean up properly.
-window.onunload = window.onbeforeunload = function (e) {
+$(window).on('unload beforeunload', function (e) {
     if (!!peer && !peer.destroyed) {
         peer.destroy();
     }
-};
+});
