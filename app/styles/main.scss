@@ -1,39 +1,24 @@
 // bower:scss
 // endbower
 
-html,
-body {
-    height: 100%
+.container {
+    width: 1320px;
 }
-body {
-    background-color: #000;
-    color: #fff;
-    margin: 0px;
-    padding: 0;
-    overflow: hidden;
+#vrContainer {
+    width: 1280px;
+    height: 720px;
+    position: relative;
 }
-a {
-    color: #ffffff
-}
-#info {
+#VRbutton {
     position: absolute;
-    width: 100%;
-    color: #ffffff;
-    padding: 5px;
-    font-family: Monospace;
-    font-size: 13px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1
-}
-#menu {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center
+    bottom: 0;
+    right: 0;
+    text-align: right;
 }
 #enterVR {
-    color: #FFF
+    color: #FFF;
+    cursor: pointer;
+    padding: 1rem;
 }
 #enterVR::after {
     content: "Enter VR";
@@ -50,14 +35,29 @@ a {
 #enterVR:hover::after {
     display: block
 }
+#pid {
+    padding: 5px;
+    font-family: Monospace;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.client-button {
+    padding-left: 10px;
+}
+.action {
+    padding-top: 10px;
+}
+.btn {
+    font-family: Monospace;
+    font-size: 13px;
+    font-weight: bold;
+}
 .white {
     color: #FFF
 }
 .bg-pink {
     background-color: #e14164
-}
-.absolute {
-    position: absolute
 }
 .top-0 {
     top: 0
@@ -77,35 +77,25 @@ a {
 .bottom-2 {
     bottom: 2rem
 }
-.relative {
-    position: relative
-}
 .left-align {
     text-align: left
 }
 .center-align {
     text-align: center
 }
-.right-align {
-    text-align: right
-}
-.p2 {
-    padding: 1rem
-}
+/*
 .full-width {
     width: 100%
 }
 .full-height {
     height: 100%
 }
+*/
 .w6 {
     width: 6rem
 }
 .pr2 {
     padding-right: 1rem
-}
-.cursor-pointer {
-    cursor: pointer
 }
 .table {
     display: table;
@@ -116,7 +106,7 @@ a {
     vertical-align: middle
 }
 .container {
-    max-width: 100%;
+    //max-width: 100%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 2rem;
@@ -209,22 +199,6 @@ button:hover {
 button:active {
     color: #000000;
     background-color: rgba(0, 255, 255, 0.75);
-}
-
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
 }
 
 .browserupgrade {

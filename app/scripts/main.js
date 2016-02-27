@@ -12,8 +12,10 @@ var helper, axis, grid;
 
 var modeVR = false;
 
-var srcwidth = 1280;
-var srcheight = 720;
+var myStream;
+
+var srcWidth = 1280;
+var srcHeight = 720;
 
 ///////// degree to radian utility function
 var d2r = function(d) { return d * Math.PI / 180; };
@@ -47,13 +49,13 @@ function removeAxisGrid() {
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = srcWidth / srcHeight;
     camera.updateProjectionMatrix();
 
     if (modeVR) {
-        vrEffect.setSize(window.innerWidth, window.innerHeight);
+        vrEffect.setSize(srcWidth, srcHeight);
     } else {
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(srcWidth, srcHeight);
     }
 }
 
@@ -76,21 +78,21 @@ function onkey(event) {
 
 function init() {
     clock = new THREE.Clock();
-    
+
     // レンダーのセットアップ
     renderer = new THREE.WebGLRenderer({antialias: true});
 
     // VR stereo rendering
     vrEffect = new THREE.VREffect(renderer);
-    vrEffect.setSize(window.innerWidth, window.innerHeight);
+    vrEffect.setSize(srcWidth, srcHeight);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(srcWidth, srcHeight);
 
     // container that fullscreen will be called on.
     container = document.getElementById('vrContainer');
     container.appendChild(renderer.domElement);
 
-    camera = new THREE.PerspectiveCamera(zoom, window.innerWidth / window.innerHeight);
+    camera = new THREE.PerspectiveCamera(zoom, srcWidth / srcHeight);
     //camera.position.set(0, 0, 0.1);
 	//camera.lookAt(cameraDir);
     console.log('cameraDir', cameraDir);
@@ -132,7 +134,7 @@ function init() {
 
     window.addEventListener('resize', onWindowResize, false);
 
-    window.addEventListener('keydown', onkey, true);
+    //window.addEventListener('keydown', onkey, true);
 
     // enterVR button
     var enterVr = document.getElementById('enterVR');
@@ -160,39 +162,9 @@ function init() {
 	video.loop = false;
 	video.volume = 0.5;
 
-    navigator.getUserMedia = ( navigator.getUserMedia ||
-                              navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia ||
-                              navigator.msGetUserMedia);
-
-    if (navigator.getUserMedia) {
-        navigator.getUserMedia(
-            {
-                video: true,
-                audio: true
-            },
-            function(localMediaStream) {
-                if ( typeof video.mozSrcObject !== 'undefined') {
-                    // moz
-                    video.mozSrcObject = localMediaStream;
-                } else {
-                    // others
-                    video.src = ( window.URL && window.URL.createObjectURL( localMediaStream ) ) || localMediaStream;
-                }
-
-                video.play();
-            },
-            function ( error ) {
-                console.log( error );
-            }
-        );
-    } else {
-        console.log('getUserMedia not supported');
-    }
-
     var videoCanvas = document.createElement('canvas');
-    videoCanvas.width = srcwidth;
-    videoCanvas.height = srcheight;
+    videoCanvas.width = srcWidth;
+    videoCanvas.height = srcHeight;
 
 	videoContext = videoCanvas.getContext('2d');
 	videoContext.fillStyle = '#000000';

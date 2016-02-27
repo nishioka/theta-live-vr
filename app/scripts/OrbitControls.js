@@ -812,304 +812,161 @@
 	THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;
 
 	Object.defineProperties( THREE.OrbitControls.prototype, {
-
 		object: {
-
 			get: function () {
-
 				return this.constraint.object;
-
 			}
-
 		},
-
 		target: {
-
 			get: function () {
-
 				return this.constraint.target;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: target is now immutable. Use target.set() instead.' );
 				this.constraint.target.copy( value );
-
 			}
-
 		},
-
 		minDistance : {
-
 			get: function () {
-
 				return this.constraint.minDistance;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.minDistance = value;
-
 			}
-
 		},
-
 		maxDistance : {
-
 			get: function () {
-
 				return this.constraint.maxDistance;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.maxDistance = value;
-
 			}
-
 		},
-
 		minZoom : {
-
 			get: function () {
-
 				return this.constraint.minZoom;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.minZoom = value;
-
 			}
-
 		},
-
 		maxZoom : {
-
 			get: function () {
-
 				return this.constraint.maxZoom;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.maxZoom = value;
-
 			}
-
 		},
-
 		minPolarAngle : {
-
 			get: function () {
-
 				return this.constraint.minPolarAngle;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.minPolarAngle = value;
-
 			}
-
 		},
-
 		maxPolarAngle : {
-
 			get: function () {
-
 				return this.constraint.maxPolarAngle;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.maxPolarAngle = value;
-
 			}
-
 		},
-
 		minAzimuthAngle : {
-
 			get: function () {
-
 				return this.constraint.minAzimuthAngle;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.minAzimuthAngle = value;
-
 			}
-
 		},
-
 		maxAzimuthAngle : {
-
 			get: function () {
-
 				return this.constraint.maxAzimuthAngle;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.maxAzimuthAngle = value;
-
 			}
-
 		},
-
 		enableDamping : {
-
 			get: function () {
-
 				return this.constraint.enableDamping;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.enableDamping = value;
-
 			}
-
 		},
-
 		dampingFactor : {
-
 			get: function () {
-
 				return this.constraint.dampingFactor;
-
 			},
-
 			set: function ( value ) {
-
 				this.constraint.dampingFactor = value;
-
 			}
-
 		},
 
 		// backward compatibility
-
 		noZoom: {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
 				return ! this.enableZoom;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
 				this.enableZoom = ! value;
-
 			}
-
 		},
-
 		noRotate: {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
 				return ! this.enableRotate;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
 				this.enableRotate = ! value;
-
 			}
-
 		},
-
 		noPan: {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
 				return ! this.enablePan;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
 				this.enablePan = ! value;
-
 			}
-
 		},
-
 		noKeys: {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
 				return ! this.enableKeys;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
 				this.enableKeys = ! value;
-
 			}
-
 		},
-
 		staticMoving : {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
 				return ! this.constraint.enableDamping;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
 				this.constraint.enableDamping = ! value;
-
 			}
-
 		},
-
 		dynamicDampingFactor : {
-
 			get: function () {
-
 				console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
 				return this.constraint.dampingFactor;
-
 			},
-
 			set: function ( value ) {
-
 				console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
 				this.constraint.dampingFactor = value;
-
 			}
-
 		}
-
-	} );
-
+	});
 }() );

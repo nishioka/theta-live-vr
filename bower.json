@@ -4,7 +4,9 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "modernizr": "~2.8.1",
-    "three.js": "~0.73.0"
+    "three.js": "~0.73.0",
+    "peerjs": "^0.3.14",
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
     "chai": "~3.4.2",
