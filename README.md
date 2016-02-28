@@ -10,6 +10,8 @@ npm install & bower install
 
 Run `gulp`.
 
+## Caution
+
 PeerJS in Firefox need a patch. See below.
 
 Patch to prevent the pc is undefined error on firefox 40+  
@@ -18,6 +20,7 @@ https://github.com/peers/peerjs/pull/306
 ```
 npm install peerjs_fork_firefox40
 ```
+and overwrite peer.js.
 
-##License
+## License
 Under the [MIT License](https://tldrlegal.com/l/mit).
