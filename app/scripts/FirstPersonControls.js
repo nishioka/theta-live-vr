@@ -261,7 +261,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.dispose = function() {
 
-/*
 		this.domElement.removeEventListener( 'contextmenu', contextmenu, false );
 		this.domElement.removeEventListener( 'mousedown', _onMouseDown, false );
 		this.domElement.removeEventListener( 'mousemove', _onMouseMove, false );
@@ -269,11 +268,9 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		window.removeEventListener( 'keydown', _onKeyDown, false );
 		window.removeEventListener( 'keyup', _onKeyUp, false );
-*/
 
 	}
 
-/*
 	var _onMouseMove = bind( this, this.onMouseMove );
 	var _onMouseDown = bind( this, this.onMouseDown );
 	var _onMouseUp = bind( this, this.onMouseUp );
@@ -287,7 +284,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	window.addEventListener( 'keydown', _onKeyDown, false );
 	window.addEventListener( 'keyup', _onKeyUp, false );
-*/
 
 	function bind( scope, fn ) {
 

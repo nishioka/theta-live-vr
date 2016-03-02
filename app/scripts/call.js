@@ -85,6 +85,7 @@ $('#host').click(function () {
 
             peer.on('connection', function(dataConnection) {
                 console.log('get connection from client(' + dataConnection.peer + ')');
+                $('#connected').append('<li class="list-group-item">' + dataConnection.peer + '</li>');
                 peer.call(dataConnection.peer, localMediaStream);
             });
         });

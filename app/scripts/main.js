@@ -101,7 +101,7 @@ function init() {
     vrControl = new THREE.VRControls(camera);
     
     // for not VR
-    monoControl = new THREE.FirstPersonControls(camera);
+    monoControl = new THREE.FirstPersonControls(camera, container);
 
     // FirstPersonControls
     monoControl.lookSpeed = 0.1;
