@@ -165,10 +165,9 @@ gulp.task('build', ['lint', 'html', 'images', 'fonts', 'shaders', 'extras'], () 
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
-gulp.task('deploy', ['build'], () => {
-    return gulp.src('dist')
-        .pipe($.subtree())
-        .pipe($.clean());
+gulp.task('deploy', () => {
+    return gulp.src('dist/**/*')
+        .pipe($.ghPages()).pipe($.clean());
 });
 
 gulp.task('default', ['clean'], () => {
