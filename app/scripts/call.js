@@ -92,6 +92,7 @@ $('#host').click(function () {
             localMediaStream = stream;
             console.log('get localMedia');
             $('#client').hide();
+            $('#connected-list').show();
 
             video.play();
 
@@ -119,6 +120,7 @@ $('#close').click(function () {
 });
 
 $(window).on('load', function() {
+    $('#connected-list').hide();
     var url = $.url();
     var id = url.param('id');
     $('#rid').val(id);
