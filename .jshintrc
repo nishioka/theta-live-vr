@@ -270,5 +270,5 @@
     /*
     * カスタムグローバルキーワードの設定
     */
-    "predef": ["THREE", "HMDVRDevice", "PositionSensorVRDevice", "self"]
+    "predef": ["THREE", "VRClient", "ShaderLoader", "HMDVRDevice", "PositionSensorVRDevice", "self"]
 }

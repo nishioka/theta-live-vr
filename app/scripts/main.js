@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 
 var container;
 
@@ -11,8 +11,6 @@ var video, videoContext, texture;
 var helper, axis, grid;
 
 var modeVR = false;
-
-var myStream;
 
 var srcWidth = 1280;
 var srcHeight = 720;
@@ -134,7 +132,7 @@ function init() {
 
     window.addEventListener('resize', onWindowResize, false);
 
-    //window.addEventListener('keydown', onkey, true);
+    container.addEventListener('keydown', onkey, true);
 
     // enterVR button
     var enterVr = document.getElementById('enterVR');
@@ -153,7 +151,7 @@ function init() {
         modeVR = true;
         vrEffect.setFullScreen(true);
     }, false);
-    
+
     ///////// SPHERE
     var geometry = new THREE.SphereGeometry(100, 32, 16);
 
