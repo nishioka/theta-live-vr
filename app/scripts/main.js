@@ -97,7 +97,7 @@ function init() {
 
     // for VR
     vrControl = new THREE.VRControls(camera);
-    
+
     // for not VR
     monoControl = new THREE.FirstPersonControls(camera, container);
 
